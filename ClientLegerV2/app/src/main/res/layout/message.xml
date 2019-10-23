@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="polymtl.equipe3.clientlegerv2.ui.message.MessageViewModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingEnd="@{viewModel.getMessageIsSent()? @dimen/normal_padding : @dimen/message_padding}"
+        android:paddingStart="@{viewModel.getMessageIsSent()? @dimen/message_padding : @dimen/normal_padding}"
+        app:mutableIsSentGravity="@{viewModel.getMessageIsSent()}">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:mutableIsSentGravity="@{viewModel.getMessageIsSent()}">
+            <TextView
+                android:id="@+id/message_sender"
+                app:mutableText="@{viewModel.getMessageSender()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/message_time"
+                app:mutableText="@{viewModel.getMessageTimeSent()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:paddingLeft="8dp" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/message_text"
+            app:mutableText="@{viewModel.getMessageContent()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@{viewModel.getMessageIsSent()? @drawable/message_sent_background : @drawable/message_received_background}"
+            android:gravity="start"
+            android:padding="8dp"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+</layout>

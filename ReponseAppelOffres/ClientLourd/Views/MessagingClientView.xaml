@@ -1,0 +1,193 @@
+﻿<Window x:Class="ClientLourd.Views.MessagingClientView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientLourd.Views"
+        xmlns:properties="clr-namespace:ClientLourd.Properties"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        mc:Ignorable="d"
+        Title="MessagingClientView" Height="450" Width="800"
+        Background="White"
+        MinHeight="500" MinWidth="800"
+        x:Name="Window"
+        Loaded="Window_Loaded">
+
+    <Window.Resources>
+        <Style x:Key="MessagesStyle" TargetType="TextBox">
+            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="IsReadOnly" Value="True"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="MaxWidth" Value="500"></Setter>
+            <Setter Property="Padding" Value="6"></Setter>
+        </Style>
+
+        <Style x:Key="SentMessageStyle" TargetType="TextBox" BasedOn="{StaticResource MessagesStyle}">
+            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+            <Setter Property="Background" Value="LightGray"></Setter>
+            <Setter Property="Margin" Value="4,4,10,2"></Setter>
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="14" />
+                </Style>
+            </Style.Resources>
+        </Style>
+
+        <Style x:Key="ReceivedMessageStyle" TargetType="TextBox" BasedOn="{StaticResource MessagesStyle}">
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="Background" Value="#008577"></Setter>
+            <Setter Property="Margin" Value="10,0,4,2"></Setter>
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="14" />
+                </Style>
+            </Style.Resources>
+        </Style>
+
+        <Style x:Key="SenderName" TargetType="Label">
+            <Setter Property="FontSize" Value="12"></Setter>
+            <Setter Property="Margin" Value="5,4,4,-5"></Setter>
+            <Setter Property="Foreground" Value="Gray"></Setter>
+        </Style>
+
+        <Style x:Key="Online" TargetType="Label">
+            <Setter Property="Margin" Value="5,4,5,0"></Setter>
+            <Setter Property="FontStyle" Value="Italic"></Setter>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid Margin="0,0,0,10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" MaxHeight="55"></RowDefinition>
+            <RowDefinition Height="7*"></RowDefinition>
+            <RowDefinition Height="*" MaxHeight="40"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="ApplicationTitle" Grid.Column="0" Grid.Row="0" Background="#008577">
+            <Label Content="{x:Static properties:Resources.AppName}" FontWeight="Bold" FontSize="14"
+                   FontFamily="Roboto Light" FontStyle="Oblique" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        </Grid>
+
+        <Grid x:Name="Menu" Visibility="Hidden" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" Panel.ZIndex="1000" Cursor="Hand" HorizontalAlignment="Right">
+            <StackPanel>
+                <Label x:Name="Logout" Background="DarkGray" Content="{x:Static properties:Resources.Logout}"
+                       MouseUp="Logout_OnClick" MouseEnter="Logout_OnMouseEnter" MinWidth="150"
+                       MouseLeave="Logout_OnMouseLeave" HorizontalAlignment="Center" Height="40" Padding="20,10,0,0" />
+                <Label x:Name="Themes" Background="DarkGray" Content="{x:Static properties:Resources.DarkTheme}"
+                       MouseUp="ChangeTheme_OnClick" MouseEnter="ChangeTheme_OnMouseEnter" MinWidth="150"
+                       MouseLeave="ChangeTheme_OnMouseLeave" HorizontalAlignment="Center" Height="40" Padding="20,10,0,0" />
+            </StackPanel>
+        </Grid>
+
+        <Grid x:Name="Header" Grid.Row="0" Grid.Column="1" Background="#008577">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="8*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <fa:ImageAwesome x:Name="HamburgerMenu" Grid.Column="2" Icon="Bars" Margin="5,15,25,15" HorizontalAlignment="Right" MouseUp="Dropdown_OnMouseUp"
+                                 Foreground="White" Cursor="Hand" ToolTip="{x:Static properties:Resources.Options}" />
+
+            </Grid>
+        </Grid>
+
+        <Rectangle Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Stretch" Width="1" Stroke="LightGray" HorizontalAlignment="Right"/>
+
+        <ScrollViewer x:Name="LeftPanel" Grid.Column="0" Grid.Row="1" VerticalScrollBarVisibility="Auto" Background="LightGray">
+            <!--<StackPanel x:Name="OnlinePersons"  >
+                <Label Content="{x:Static properties:Resources.Online}" FontSize="15" Margin="5,5,0,0"></Label>
+                <Separator Margin="5,5,5,8" Background="LightGray"></Separator>
+            </StackPanel>-->
+        </ScrollViewer>
+
+        <Separator x:Name="LeftPanelSeparator" Grid.Column="0" Grid.Row="1" Margin="5,5,5,5" Background="DarkGray" VerticalAlignment="Bottom"></Separator>
+
+        <Grid Grid.Column="0" Grid.Row="2" Margin="0,-5,0,-10">
+            <StackPanel x:Name="ConnectedAsPanel" Background="LightGray">
+                <Label Content="{x:Static properties:Resources.ConnectedAsMessage}" Margin="0,0,0,-5" FontSize="10"></Label>
+                <TextBox IsReadOnly="True" BorderThickness="0" Background="LightGray" x:Name="UserName"
+                         FontStyle="Italic" FontSize="12" TextWrapping="Wrap">
+                </TextBox>
+            </StackPanel>
+        </Grid>
+
+        <ScrollViewer Grid.Column="1" Grid.Row="1" x:Name="MessagesScrollViewer" VerticalScrollBarVisibility="Auto" Margin="0,0,0,5">
+            <Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="9*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="9*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="9*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="9*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <fa:ImageAwesome Grid.Column="1" Grid.Row="1" Icon="Spinner" Spin="True" Foreground="LightGray"
+                                     Visibility="{Binding Path=IsLoading, Converter={StaticResource BoolToVis} }"/>
+
+                </Grid>
+                <StackPanel x:Name="Messages" VerticalAlignment="Bottom" Margin="0,0,0,8">
+                </StackPanel>
+                <Separator VerticalAlignment="Bottom" Margin="5,0,5,0"/>
+            </Grid>
+        </ScrollViewer>
+
+        <Grid Grid.Row="2" Grid.Column="1" Margin="0.4,0.4,-0.4,-0.4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="8*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBox x:Name="InputTextBox" Grid.Column="0" KeyDown="InputTextBox_OnKeyDown" Margin="10,2,0,0"
+                     TextWrapping="Wrap" Padding="5,0,0,0" FontSize="15" VerticalContentAlignment="Center"
+                     Background="White" MaxLength="1000">
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="6"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+            <TextBlock Grid.Column="0" Padding="20,0,0,0" IsHitTestVisible="False"
+                       Text="{x:Static properties:Resources.TypeMessageBox}" HorizontalAlignment="Left"
+                       VerticalAlignment="Center" Foreground="LightGray">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=InputTextBox}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="5*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <fa:ImageAwesome Grid.Column="1" Grid.Row="1" Icon="PaperPlane" MouseUp="SendMessage_OnClick"
+                                 Foreground="#00574b" Cursor="Hand" ToolTip="{x:Static properties:Resources.Send}" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

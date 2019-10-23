@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="polymtl.equipe3.clientlegerv2.ui.gameLobby.GameListElementViewModel" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/game_list_element"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:padding="3dp"
+            android:textColor="@android:color/black"
+            app:mutableText="@{viewModel.getGameName()}" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:textColor="@android:color/black"
+            app:mutableText="@{viewModel.getGameMode()}" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:textColor="@android:color/black"
+            app:mutableText="@{viewModel.getNumberOfPlayers()}" />
+    </LinearLayout>
+</layout>

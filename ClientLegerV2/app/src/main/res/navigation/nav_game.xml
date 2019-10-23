@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_game"
+    app:startDestination="@id/gameLobbyFragment">
+
+    <!-- Lobby de jeu -->
+    <fragment
+        android:id="@+id/gameLobbyFragment"
+        android:name="polymtl.equipe3.clientlegerv2.ui.gameLobby.GameLobbyFragment"
+        android:label="GameLobbyFragment">
+        <action
+            android:id="@+id/action_gameLobbyFragment_to_waitingRoomFragment"
+            app:destination="@id/waitingRoomFragment" />
+    </fragment>
+
+    <!-- Salle d'attente -->
+    <fragment
+        android:id="@+id/waitingRoomFragment"
+        android:name="polymtl.equipe3.clientlegerv2.ui.waitingRoom.WaitingRoomFragment"
+        android:label="fragment_waiting_room">
+        <action
+            android:id="@+id/action_waitingRoomFragment_to_classicGameFragment"
+            app:destination="@id/classicGameFragment" />
+    </fragment>
+
+    <!-- Partie en cours mode classique -->
+    <fragment
+        android:id="@+id/classicGameFragment"
+        android:name="polymtl.equipe3.clientlegerv2.ui.classicGame.ClassicGameFragment"
+        android:label="ClassicGameFragment">
+        <action
+            android:id="@+id/action_classicGameFragment_to_endGameFragment"
+            app:destination="@id/endGameFragment" />
+    </fragment>
+
+    <!-- Fin de partie -->
+    <fragment
+        android:id="@+id/endGameFragment"
+        android:name="polymtl.equipe3.clientlegerv2.ui.endGame.EndGameFragment"
+        android:label="EndGameFragment">
+        <action
+            android:id="@+id/action_endGameFragment_to_gameLobbyFragment"
+            app:destination="@id/gameLobbyFragment" />
+    </fragment>
+
+</navigation>

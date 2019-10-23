@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">TurboChat5000</string>
+    <string name="envoyer">Envoyer</string>
+    <string name="EntrezMessage">Entrez un message...</string>
+
+    <string name="com_auth0_client_id">euG3C5fnOGPwxjHVNf8TWNKRNflsdlBO</string>
+    <string name="com_auth0_domain">log3900.auth0.com</string>
+    <string name="se_deconnecter">Se déconnecter</string>
+    <string name="se_connecter">Se connecter</string>
+</resources>

@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="message_padding">30dp</dimen>
+    <dimen name="normal_padding">0dp</dimen>
+</resources>

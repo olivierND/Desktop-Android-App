@@ -1,0 +1,40 @@
+<resources>
+    <!-- General -->
+    <string name="app_name">TurboPaint5000</string>
+
+    <!-- Chat -->
+    <string name="envoyer">Envoyer</string>
+    <string name="entrez_message">Entrez un message...</string>
+
+    <!-- Authentification, connexion et deconnexion -->
+    <string name="com_auth0_client_id">euG3C5fnOGPwxjHVNf8TWNKRNflsdlBO</string>
+    <string name="com_auth0_domain">log3900.auth0.com</string>
+    <string name="logout">Se déconnecter</string>
+    <string name="login">Se connecter</string>
+
+    <!-- Lobby de jeu -->
+    <string name="join_game">JOINDRE UNE PARTIE</string>
+    <string name="game_name">Nom</string>
+    <string name="game_mode">Mode de jeu</string>
+    <string name="num_players">Nombre de joueurs</string>
+    <string name="play">JOUER</string>
+
+    <!-- Salle d'attente -->
+    <string name="waiting_room">SALLE D\'ATTENTE</string>
+    <string name="start">COMMENCER</string>
+    <string name="team1">Équipe 1</string>
+    <string name="team2">Équipe 2</string>
+
+    <!-- Partie en cours mode classique -->
+    <string name="end_game">FIN DE PARTIE</string>
+    <string name="player_is_drawing">Faites un dessin à Chriscool</string>
+    <string name="player_guess">Chriscool devine : </string>
+
+    <!-- Zone de dessin -->
+    <string name="confirm">Choisir</string>
+    <string name="cancel">Annuler</string>
+
+    <!-- Fin de partie -->
+    <string name="back_to_lobby">Retour</string>
+
+</resources>

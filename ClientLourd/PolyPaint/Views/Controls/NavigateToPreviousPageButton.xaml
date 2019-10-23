@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="PolyPaint.Views.Controls.NavigateToPreviousPageButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PolyPaint.Views.Controls"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Button Style="{StaticResource SystemIconButton}" Height="30" Width="40" 
+            Command="{Binding DisplayPopupIfNeededCommand}" HorizontalAlignment="Left">
+        <fa:ImageAwesome Icon="AngleLeft" Foreground="{StaticResource ForegroundMainBrush}"></fa:ImageAwesome>
+    </Button>
+</UserControl>

@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Server</name>
+    </assembly>
+    <members>
+        <member name="M:Server.Controllers.ChannelController.GetUserId">
+            <summary>
+            Use user id as user identifier for database entries
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Server.Controllers.ChannelController.GetChannels">
+            <summary>
+            Returns all channels
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Server.Controllers.ChannelController.GetChatChannels">
+            <summary>
+            Returns all channels for chat purposes.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Server.Controllers.ChannelController.GetLobbyChannels">
+            <summary>
+            Return all channels for game lobby purposes
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Server.Controllers.ChannelController.GetUserChannels">
+            <summary>
+            Return all channels the user is part of
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Server.Controllers.ChannelController.GetChannelUsers(System.String)">
+            <summary>
+            Return all user ids a channel contains
+            </summary>
+            <param name="channelId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Server.Controllers.ChannelController.GetChannelMessages(System.String)">
+            <summary>
+            Return all messages of a specific channel
+            </summary>
+            <param name="channelId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Server.Controllers.ChannelController.CreateChannel(Server.Database.Models.Channel)">
+            <summary>
+            Create a channel
+            </summary>
+            <param name="channel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Server.Controllers.ChannelController.DeleteChannel(System.String)">
+            <summary>
+            Delete a channel by id
+            </summary>
+            <param name="channelId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Server.Hubs.MessageHub.Join(System.String,System.String)">
+            <summary>
+            Adds user to a specific channel and notifies all other channel members
+            </summary>
+            <param name="username"></param>
+            <param name="channelId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Server.Hubs.MessageHub.Leave(System.String,System.String)">
+            <summary>
+            Removes user from a specific channel and notifies all other channel members
+            </summary>
+            <param name="username"></param>
+            <param name="channelId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Server.Hubs.MessageHub.SendMessage(System.String,System.String,System.String)">
+            <summary>
+            Receive message from client, save it to the db, then forward it to all other clients
+            </summary>
+            <param name="username"></param>
+            <param name="channelId"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
